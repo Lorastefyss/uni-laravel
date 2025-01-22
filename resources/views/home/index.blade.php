@@ -14,3 +14,5 @@
     </ul>
     {{ $records->links() }}
 @endif
+
+@endsection
