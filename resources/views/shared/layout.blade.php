@@ -18,9 +18,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
+                    @if (user() && user()->role === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.index') }}">Admin Panel</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

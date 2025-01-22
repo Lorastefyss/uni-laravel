@@ -19,7 +19,6 @@ class EnsureUserIsAdmin
 
         if(is_null($user)) return redirect('/');
 
-
         if ($user->role !== 'admin') {
             return redirect('/');
         }

@@ -10,5 +10,5 @@ Route::get('/login', 'App\Http\Controllers\AdminLoginController@index')->name('l
 
 
 Route::group(['prefix' => '/admin', 'as' => 'admin.', 'middlewares' => ['auth', 'admin.only']], function () {
-    Route::get('/', 'App\Http\Controllers\AdminController@index')->name('index');
+    Route::get('/', 'App\Http\Controllers\Admin\UsersController@index')->name('index');
 });
