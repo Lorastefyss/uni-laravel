@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     @vite('resources/css/app.css')
 </head>
+
 <body>
     <div class="container-fluid">
+        <div class="flash-message">
+            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                @if(Session::has('alert-' . $msg))
+                    <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+                @endif
+            @endforeach
+        </div>
         <div class="row">
             <!-- Sidebar -->
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
-                        @if(Route::has('admin.users.index'))
+                        @if(Route::has('admin.index'))
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ route('admin.users.index') }}">
+                                <a class="nav-link active" aria-current="page" href="{{ route('admin.index') }}">
                                     Manage Users
                                 </a>
                             </li>
@@ -27,6 +36,11 @@
                                 </a>
                             </li>
                         @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('client.index') }}">
+                                Front End
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -40,4 +54,5 @@
 
     @vite('resources/js/app.js')
 </body>
+
 </html>
