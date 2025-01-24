@@ -24,7 +24,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->created_at }}</td>
+                    <td>{{ $user->created_at?->toFormattedDateString() }}</td>
                     <td>
                         <a href="{{ route('admin.edit', $user) }}" class="btn btn-primary btn-sm">Edit</a>
                         <form action="{{ route('admin.destroy', $user) }}" method="POST" style="display: inline-block;">

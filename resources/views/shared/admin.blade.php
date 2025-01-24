@@ -41,6 +41,12 @@
                                 Front End
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="nav-link" type="submit">Logout</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </nav>

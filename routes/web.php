@@ -18,5 +18,16 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/update', 'App\Http\Controllers\Admin\UsersController@update')->name('update');
             Route::delete('/delete', 'App\Http\Controllers\Admin\UsersController@destroy')->name('destroy');
         });
+
+        Route::group(['prefix' => '/events', 'as' => 'events.'], function () {
+            Route::get('/', 'App\Http\Controllers\Admin\AdminEventsController@index')->name('index');
+            Route::get('/create', 'App\Http\Controllers\Admin\AdminEventsController@create')->name('create');
+            Route::post('/store', 'App\Http\Controllers\Admin\AdminEventsController@store')->name('store');
+            Route::group(['prefix' => "{event}"], function () {
+                Route::get('/edit', 'App\Http\Controllers\Admin\AdminEventsController@edit')->name('edit');
+                Route::put('/update', 'App\Http\Controllers\Admin\AdminEventsController@update')->name('update');
+                Route::delete('/delete', 'App\Http\Controllers\Admin\AdminEventsController@destroy')->name('destroy');
+            });
+        });
     });
 });

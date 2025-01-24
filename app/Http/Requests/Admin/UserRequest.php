@@ -13,7 +13,6 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        // Assuming all authenticated users can manage users
         return true;
     }
 
