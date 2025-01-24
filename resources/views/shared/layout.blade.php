@@ -22,6 +22,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.index') }}">Admin Panel</a>
                         </li>
+                        <li class="nav-item">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="nav-link" type="submit">Logout</button>
+                            </form>
+                        </li>
+                    @endif
+                    @if (!user())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login.index') }}">Login</a>
+                        </li>
                     @endif
                 </ul>
             </div>
