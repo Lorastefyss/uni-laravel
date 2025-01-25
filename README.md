@@ -8,7 +8,7 @@
 extension=gd
 ```
 
-
+- **MySQL**: The app by default will try to connect to your local host @ port 3306. You can edit that in the ```.env```
 - **Composer**
 - **npm**
 
