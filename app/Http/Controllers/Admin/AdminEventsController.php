@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\Archive;
+use Storage;
 use App\Http\Requests\Admin\EventRequest;
-use Illuminate\Http\Request;
 
 class AdminEventsController extends Controller
 {
     public function index()
     {
-        $events = Event::paginate(15);
+        $events = Event::orderBy('created_at', 'desc')->paginate(15);
         return view('admin.events.index', compact('events'));
     }
 
@@ -24,7 +25,20 @@ class AdminEventsController extends Controller
     public function store(EventRequest $request)
     {
         $data = $request->validated();
-        Event::create($data);
+        $event = Event::create($data);
+
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $filename = $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads'), $filename);
+        
+                $event->archives()->create([
+                    'file_name' => 'uploads/' . $filename,
+                    'file_date' => now(),
+                ]);
+            }
+        }
+
         return redirect()->route('admin.events.index');
     }
 
@@ -37,7 +51,28 @@ class AdminEventsController extends Controller
     {
         $data = $request->validated();
         $event->update($data);
+
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $filename = $file->getClientOriginalName();
+                $path = $file->move(public_path('uploads'), $filename);
+        
+                $event->archives()->create([
+                    'file_name' => 'uploads/' . $filename,
+                    'file_date' => now(),
+                ]);
+            }
+        }
+
         return redirect()->route('admin.events.index');
+    }
+
+    public function deleteArchive(Archive $archive)
+    {
+        Storage::disk('public')->delete($archive->file_name);
+        $archive->delete();
+
+        return back()->with('success', 'File deleted successfully.');
     }
 
     public function destroy(Event $event)

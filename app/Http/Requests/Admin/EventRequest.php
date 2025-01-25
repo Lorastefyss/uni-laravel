@@ -26,6 +26,7 @@ class EventRequest extends FormRequest
             'name' => ['required', 'string', 'min:1'],
             'year' => ['required', 'integer', 'min:1970'],
             'type' => ['required', 'string', 'min:1'],
+            'files.*' => 'nullable|file|mimes:jpg,jpeg,png|max:10240',
         ];
     }
 }
