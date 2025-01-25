@@ -35,6 +35,8 @@ Access to the admin panel requires authentication:
 
 ## Setup and Installation
 
+Copy ```.env.example``` to ```.env.```
+
 In the folder of the project run
 ```bash
 npm ci
