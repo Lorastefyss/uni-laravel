@@ -6,6 +6,7 @@ Route::group(['prefix' => '/', 'as' => 'client.'], function () {
     Route::get('', 'App\Http\Controllers\HomeController@index')->name('index');
     Route::get('/show/{event}', 'App\Http\Controllers\HomeController@show')->name('show');
 });
+// frontend routes
 
 Route::get('/login', 'App\Http\Controllers\AdminLoginController@index')->name('login.index');
 

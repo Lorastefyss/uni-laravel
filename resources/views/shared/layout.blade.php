@@ -21,6 +21,7 @@
                     @if (user() && user()->role === 'admin')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.index') }}">Admin Panel</a>
+                            <!-- проверка има ли потребител и дали той е админ -->
                         </li>
                         <li class="nav-item">
                             <form method="POST" action="{{ route('logout') }}">
@@ -42,6 +43,7 @@
 
     <div class="container mt-4">
         @yield('content')
+        <!-- когато правим изглед, който е споделен, използваме yield за да дефинираме секции(content) -->
     </div>
     @vite('resources/js/app.js')
 </body>

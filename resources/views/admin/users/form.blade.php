@@ -26,11 +26,13 @@
         <label for="email" class="form-label">Email Address</label>
         <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
             value="{{ old('email', $user->email) }}" autocomplete="email">
+            <!-- old взема старата стойност от заявката и я поставя като стойност, но ако не я намери показва по подразбиране -->
         @error('email')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
+        <!-- генерира контекст за имейла, и ларавела показва грешките само за него -->
     </div>
 
     {{-- Password field --}}
@@ -44,6 +46,7 @@
             </span>
         @enderror
     </div>
+    <!-- не слагаме old, защото не е добра практика, защото полето се сменя без да се знае паролата -->
 
     {{-- Confirm Password field --}}
     <div class="mb-3">

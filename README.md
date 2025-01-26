@@ -56,4 +56,4 @@ To run the project locally use
 composer run dev
 ```
 
-This will run your local laravel server and your vite
+This will run your local laravel server and your vite. By default the app will run at ``` http://localhost:8000 ```

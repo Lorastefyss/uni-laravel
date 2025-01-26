@@ -20,6 +20,7 @@ class UsersController extends Controller
         $user = new User();
         return view('admin.users.form', compact('user'));
     }
+    // служи за връщане на изглед(форма)
 
     public function store(UserRequest $request)
     {

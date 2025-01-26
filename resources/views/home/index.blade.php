@@ -1,6 +1,8 @@
 @extends('shared.layout')
+<!-- разширяване на лейаута(изглед който е споделен) -->
 
 @section('content')
+<!-- назначаваме value на контента, който е в лейаута -->
 
 <h1>Events</h1>
 
@@ -16,6 +18,7 @@
             <option value="">Select Type</option>
             @foreach($eventTypes as $type)
                 <option value="{{ $type }}" {{ request('type') == $type ? 'selected' : '' }}>{{ $type }}</option>
+                <!-- рендерираме(генерираме html) опция и проверка за текуща стойност дали е селектирана -->
             @endforeach
         </select>
     </div>

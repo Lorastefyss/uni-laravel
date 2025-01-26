@@ -25,6 +25,9 @@ class HomeController extends Controller
         $eventTypes = Event::distinct()->pluck('type')->toArray();
         $records = $query->orderBy('created_at', 'desc')->paginate(15);
 
+        
+        //взимаме всички евенти и им правим дистинкт на тайпа (от всеки тип по един запис)
+
         return view('home.index', compact('records', 'eventTypes'));
     }
 

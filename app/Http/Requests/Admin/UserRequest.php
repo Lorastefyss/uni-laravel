@@ -15,6 +15,7 @@ class UserRequest extends FormRequest
     {
         return true;
     }
+// детерминираме кога текущият потребител има достъп до end-point-а
 
     /**
      * Get the validation rules that apply to the request.
